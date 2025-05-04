@@ -41,5 +41,3 @@ Already Done
 # Daynamic MetaData
 
 # Progressive Rendering
-
-https://agrosphere-4564a.web.app/
