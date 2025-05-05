@@ -1,6 +1,7 @@
 "use client";
 
 import axios from "axios";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -36,6 +37,13 @@ export default function Page() {
       .then((res) => setData(res.data))
       .catch((e) => console.log(e.message));
   }, [axios, setData]);
+
+  const handleDelete = async (id) => {
+    await axios
+      .delete(`http://localhost:3000/api/firstRequest/${id}`)
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e.message));
+  };
 
   return (
     <div>
@@ -99,6 +107,14 @@ export default function Page() {
             <div>
               <h2>{user.name}</h2>
               <h2>{user.email}</h2>
+              <button
+                onClick={() => handleDelete(user._id)}
+                className="bg-red-500 p-2 rounded-2xl"
+              >
+                Delete{" "}
+              </button>
+
+              <Link href={`/details/${user._id}`}>Update</Link>
             </div>
           );
         })}
